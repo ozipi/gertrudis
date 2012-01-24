@@ -7,9 +7,10 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 
 	// configuration of widget
 	options: {
+		skin: "",		
 		plugin: "github",
 		pluginOptions: {},
-		skin: ""
+		enableTimeout: false
 	},
 	
 	properties: {
@@ -22,14 +23,21 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 * Creation of widget
 	 **/
 	_create: function() {				
-		this.skin().init();
+		//Create the reference of the skin/plugin
+		this.skin(this.options.skin);
+		this.plugin(this.options.plugin);
+		
+		//Initialize the skin
+		this.skin().init($.proxy(this._onSkinInit_successHandler, this));
 	},
 
 	/**
 	 * Initialization of the widget
 	 **/
 	_init: function() {
-		this._setTimeout($.proxy(this._setTimeout, this));
+		if(this.options.enableTimeout){
+			this._setTimeout($.proxy(this._setTimeout, this));			
+		}
 	},
 	
 	/**
@@ -46,11 +54,21 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 		this._pluginExecute());
 	},
 	
+	_onSkinInit_successHandler: function(event){
+		console.log('_onSkinInit_successHandler::', options);		
+		this._pluginExecute());		
+	},
+	
 	/**
 	 * Executes the plugin action
 	 **/	
 	_pluginExecute: function(options){
-		this.plugin().execute($.proxy(this._pluginExecute_successHandler, this));		
+		//TODO: remove after plugin is created
+		//this.plugin().execute($.proxy(this._pluginExecute_successHandler, this));		
+		
+		//Hardcoded data
+		var responseObject = [{title: 'github.js', completition: '70', pending:'30'}];
+		this._pluginExecuteHandler_successHandler(responseObject);
 	},
 	
 	/**
@@ -71,13 +89,12 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 * Executes the plugin action
 	 **/	
 	_skinExecute_successHandler: function(event, options){
+		console.log('_skinExecute_successHandler::', options);
 		//TODO algo
 	},	
 	
 	_setOption : function(key, value) {
-		switch (key) {
 
-	      $.Widget.prototype._setOption.apply(this, arguments);
 	},	
 
 	/**
