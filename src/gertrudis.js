@@ -30,14 +30,18 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 		//Initialize the skin
 		//this.skin().init($.proxy(this._onSkinInit_successHandler, this));
 		
+		console.log('gertrudis.create::');		
+		
 		this._plugin(this._getPluginInstance());
-		this._pluginExecute(this.options.pluginOptions);		
 	},
 
 	/**
 	 * Initialization of the widget
 	 **/
 	_init: function() {
+		console.log('gertrudis.init::');				
+		this._pluginExecute(this.options.pluginOptions);		
+		
 		if(this.options.enableTimeout){
 			this._setTimeout($.proxy(this._setTimeout, this));			
 		}
@@ -86,7 +90,8 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	/**
 	 * Executes the plugin action
 	 **/	
-	_pluginExecuteHandler_successHandler: function(options){
+	_pluginExecute_successHandler: function(options){
+		console.log('_pluginExecute_successHandler::');				
 		this._skinExecute(options);
 	},
 	
