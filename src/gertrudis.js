@@ -15,7 +15,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	
 	properties: {
 		_skin: null,
-		_plugin: null		
+		_plugin: {}		
 	},
 	
 
@@ -32,7 +32,8 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 		
 		console.log('gertrudis.create::');		
 		
-		this.plugin(this._getPluginInstance());
+		this.properties._plugin = this._getPluginInstance(this.options.plugin, this.options.pluginOptions);
+		this.properties._plugin.init();
 	},
 
 	/**
@@ -48,6 +49,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	},
 	
 	_getPluginInstance: function(plugin, pluginOptions){
+		console.log('eee', plugin, pluginOptions);
 		var pluginInstance = '';
 		switch(plugin){
 			case 'github':
@@ -80,8 +82,8 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 **/	
 	_pluginExecute: function(options){
 		//TODO: remove after plugin is created
-		console.log('gertrudis->_pluginExecute');
-		this.plugin().execute(options, $.proxy(this._pluginExecute_successHandler, this));		
+		console.log('gertrudis->_pluginExecute', this.properties._plugin);
+		this.properties._plugin.execute(options, $.proxy(this._pluginExecute_successHandler, this));		
 		
 		//Hardcoded data
 		//var responseObject = [{title: 'github.js', completition: '70', pending:'30'}];
@@ -92,7 +94,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 * Executes the plugin action
 	 **/	
 	_pluginExecute_successHandler: function(options){
-		console.log('_pluginExecute_successHandler::');				
+		console.log('_pluginExecute_successHandler::', options);				
 		//this._skinExecute(options);
 	},
 	
