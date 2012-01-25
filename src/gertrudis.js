@@ -32,7 +32,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 		
 		console.log('gertrudis.create::');		
 		
-		this._plugin(this._getPluginInstance());
+		this.plugin(this._getPluginInstance());
 	},
 
 	/**
@@ -71,8 +71,8 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	},
 	
 	_onSkinInit_successHandler: function(event){
-		console.log('_onSkinInit_successHandler::', options);		
-		this._pluginExecute();		
+		console.log('_onSkinInit_successHandler::');		
+		this._pluginExecute(this.options.pluginOptions);		
 	},
 	
 	/**
@@ -80,6 +80,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 **/	
 	_pluginExecute: function(options){
 		//TODO: remove after plugin is created
+		console.log('gertrudis->_pluginExecute');
 		this.plugin().execute(options, $.proxy(this._pluginExecute_successHandler, this));		
 		
 		//Hardcoded data
@@ -92,7 +93,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 **/	
 	_pluginExecute_successHandler: function(options){
 		console.log('_pluginExecute_successHandler::');				
-		this._skinExecute(options);
+		//this._skinExecute(options);
 	},
 	
 	/**
