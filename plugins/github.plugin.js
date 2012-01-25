@@ -3,15 +3,18 @@ function GithubPlugin (login){
 		console.log('GithubPlugin::init');		
 		this.githubInfo = {};			
 		this.githubInfo = new Github(options.user);
+		this.callback = null;
 	};
 	
-	this.execute = function(options){
+	this.execute = function(options, handler){
 		console.log('GithubPlugin::e');
-		githubInfo.getRepoTags(options.user, options.repo, $.proxy(this._getRepoTags_successHandler, this));							
+		this.callback = handler;
+		githubInfo.getRepoTags(options.user, options.repo, $.proxy(this._getRepoTags_successHandler, this));
 	};
 	
-	this._getRepoTags_successHandler = function(meta){
-		console.log('GithubPlugin::getRepoTags->', result);		
+	this._getRepoTags_successHandler = function(data){
+		console.log('GithubPlugin::getRepoTags->', data);		
+		this._getCallback(data)
 	};
 	
 	this._getCallback = function (data) {
