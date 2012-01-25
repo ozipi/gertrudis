@@ -31,8 +31,11 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 		//this.skin().init($.proxy(this._onSkinInit_successHandler, this));
 		
 		console.log('gertrudis.create::');		
+		this.properties._skin = this._getSkinInstance();
 		
-		this.plugin(this._getPluginInstance());
+		console.log(this.properties._skin);
+
+		//this.plugin(this._getPluginInstance());
 	},
 
 	/**
@@ -40,7 +43,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 **/
 	_init: function() {
 		console.log('gertrudis.init::');				
-		this._pluginExecute(this.options.pluginOptions);		
+		this._pluginExecute(this.options.pluginOptions);
 		
 		if(this.options.enableTimeout){
 			this._setTimeout($.proxy(this._setTimeout, this));			
@@ -48,8 +51,10 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	},
 
 	_getSkinInstance: function() {
-		this._plugin = new this.options.skin();
-	}
+		//return this._skin = new BasicSkin();
+		this.options.skin = 'BasicSkin';
+		return this.options.skin.apply(this, Array.prototype.slice.call(arguments, 1));
+	},
 	
 	_getPluginInstance: function(plugin, pluginOptions){
 		var pluginInstance = '';
@@ -84,12 +89,12 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 **/	
 	_pluginExecute: function(options){
 		//TODO: remove after plugin is created
-		console.log('gertrudis->_pluginExecute');
-		this.plugin().execute(options, $.proxy(this._pluginExecute_successHandler, this));		
+		//console.log('gertrudis->_pluginExecute');
+		//this.plugin().execute(options, $.proxy(this._pluginExecute_successHandler, this));		
 		
 		//Hardcoded data
 		var responseObject = [{title: 'github.js', completition: '70', pending:'30'}];
-		this._pluginExecuteHandler_successHandler(responseObject);
+		//this._pluginExecuteHandler_successHandler(responseObject);
 	},
 	
 	/**
