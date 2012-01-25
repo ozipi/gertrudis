@@ -46,6 +46,10 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 			this._setTimeout($.proxy(this._setTimeout, this));			
 		}
 	},
+
+	_getSkinInstance: function() {
+		this._plugin = new this.options.skin();
+	}
 	
 	_getPluginInstance: function(plugin, pluginOptions){
 		var pluginInstance = '';
@@ -80,11 +84,11 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 **/	
 	_pluginExecute: function(options){
 		//TODO: remove after plugin is created
-		this.plugin().execute(options, $.proxy(this._pluginExecute_successHandler, this));		
+		//this.plugin().execute(options, $.proxy(this._pluginExecute_successHandler, this));		
 		
 		//Hardcoded data
-		//var responseObject = [{title: 'github.js', completition: '70', pending:'30'}];
-		//this._pluginExecuteHandler_successHandler(responseObject);
+		var responseObject = [{title: 'github.js', completition: '70', pending:'30'}];
+		this._pluginExecuteHandler_successHandler(responseObject);
 	},
 	
 	/**
