@@ -5,19 +5,18 @@ var BasicSkin = function() {
 	var tracking = null;
 
 	this.init = function( _container ) {
+		console.log('skin::init');
 		container = $('#testDiv');
 		txtProject = $('<label></label>');
 		tracking = $('<div></div>');
 	}
 
-	this.execute = function( data ) {
-		txtProject.text(data.project);
-		tracking.html(data.percent);
-		container.appendChild(txtProject);
-		container.appendChild(tracking);
+	this.execute = function( handler, data ) {
+		console.log('skin::exceute');
+		txtProject.text(data[0].name);
+		tracking.html(data[0].commit.url);
+		container.append(txtProject);
+		container.append(tracking);
 	}
 
-	this.skinSelected = function( skinName ) {
-		if (skinName === undefined) return _skin
-	}
 }
