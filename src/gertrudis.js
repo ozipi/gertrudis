@@ -30,7 +30,10 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 		//Initialize the skin
 		//this.skin().init($.proxy(this._onSkinInit_successHandler, this));
 		
-		console.log('gertrudis.create::');		
+		console.log('gertrudis.create::');
+
+		this.properties._skin = this._getSkinInstance(this.options.skin);
+		this.properties._skin.init();
 		
 		this.properties._plugin = this._getPluginInstance(this.options.plugin, this.options.pluginOptions);
 		this.properties._plugin.init();
@@ -46,6 +49,10 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 		if(this.options.enableTimeout){
 			this._setTimeout($.proxy(this._setTimeout, this));			
 		}
+	},
+
+	_getSkinInstance: function(skin) {
+		return new BasicSkin();
 	},
 	
 	_getPluginInstance: function(plugin, pluginOptions){
@@ -95,14 +102,14 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 **/	
 	_pluginExecute_successHandler: function(options){
 		console.log('_pluginExecute_successHandler::', options);				
-		//this._skinExecute(options);
+		this._skinExecute(options);
 	},
 	
 	/**
 	 * Executes the skin execute handler
 	 **/	
 	_skinExecute: function(options){
-		this.skin().execute($.proxy(this._skinExecute_successHandler, this));
+		this.properties._skin.execute($.proxy(this._skinExecute_successHandler, this), options);
 	},	
 	
 	/**
