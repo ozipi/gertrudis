@@ -7,8 +7,8 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 
 	// configuration of widget
 	options: {
-		skin: "",		
-		plugin: "github",
+		skin: "BasicSkin",
+		plugin: "GithubPlugin",
 		pluginOptions: {},
 		enableTimeout: false
 	},
@@ -18,7 +18,6 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 		_plugin: {}		
 	},
 	
-
 	/**
 	 * Creation of widget
 	 **/
@@ -31,7 +30,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 		//this.skin().init($.proxy(this._onSkinInit_successHandler, this));
 		
 		console.log('gertrudis.create::');
-
+		
 		this.properties._skin = this._getSkinInstance(this.options.skin);
 		this.properties._skin.init();
 		
@@ -44,7 +43,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 **/
 	_init: function() {
 		console.log('gertrudis.init::');				
-		this._pluginExecute(this.options.pluginOptions);		
+		this._pluginExecute(this.options.pluginOptions);
 		
 		if(this.options.enableTimeout){
 			this._setTimeout($.proxy(this._setTimeout, this));			
@@ -52,17 +51,17 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	},
 
 	_getSkinInstance: function(skin) {
-		return new BasicSkin();
+		return new window[this.options.skin]();
 	},
 	
 	_getPluginInstance: function(plugin, pluginOptions){
-		console.log('eee', plugin, pluginOptions);
-		var pluginInstance = '';
+		return new window[plugin](pluginOptions);
+		/*var pluginInstance = '';
 		switch(plugin){
 			case 'github':
 				return new GithubPlugin(pluginOptions);
 				break;
-		}
+		}*/
 	},
 	
 	/**
