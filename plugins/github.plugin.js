@@ -65,12 +65,16 @@ function GithubPlugin (options){
 	this._getCallback = function (data) {
 		if (this.callback != null){
 			if (this.options.versionToTrack != undefined){
-				this.callback(data[this.options.versionToTrack]);				
+				var dataselected = {};
+				dataselected[this.options.versionToTrack] = data[this.options.versionToTrack];
+				this.callback(dataselected);				
 			}
 			else{
 				this.callback(data);				
 			}
+			
 			this.callback = null;
 		}
 	};	
+	
 }
