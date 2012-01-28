@@ -5,22 +5,26 @@ var BasicSkin = function() {
 	var tracking = null;
 
 	this.init = function( _container ) {
-		console.log('skin::init');
-		container = $('#testDiv');
+		var id = "#" + _container.element.context.id;
+		console.log('skin::init', _container, _container.element.context.id, id);
+		container = $(id);
+		
 		txtProject = $('<label></label>');
 		tracking = $('<div></div>');
 	}
 
 	this.execute = function( handler, data ) {
-		console.log('skin::execute', data);
+		console.log('skin::execute', data, container);
+		
+		
 		for (var i in data) {
 			console.log('->:', data[i]);
 		};
 		
-		txtProject.text(data.completition + " " + data.major + "." + data.min);
-		//tracking.html(data[0].commit.url);
+		txtProject.text(data[0].completition + " " + data[0].major + "." + data[0].min);
+		tracking.html(data[0].completition);
 		container.append(txtProject);
-		//container.append(tracking);
+		container.append(tracking);
 	}
 
 }
