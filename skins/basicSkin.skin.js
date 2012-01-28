@@ -12,8 +12,12 @@ var BasicSkin = function() {
 	}
 
 	this.execute = function( handler, data ) {
-		console.log('skin::exceute', data);
-		txtProject.text(data.completition);
+		console.log('skin::execute', data);
+		for (var i in data) {
+			console.log('->:', data[i]);
+		};
+		
+		txtProject.text(data.completition + " " + data.major + "." + data.min);
 		//tracking.html(data[0].commit.url);
 		container.append(txtProject);
 		//container.append(tracking);
