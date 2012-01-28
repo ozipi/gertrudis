@@ -33,7 +33,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 		console.log('gertrudis.create::');
 
 		this.properties._skin = this._getSkinInstance(this.options.skin);
-		this.properties._skin.init();
+		this.properties._skin.init(this);
 		
 		this.properties._plugin = this._getPluginInstance(this.options.plugin, this.options.pluginOptions);
 		this.properties._plugin.init();
