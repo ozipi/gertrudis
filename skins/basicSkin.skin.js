@@ -12,11 +12,11 @@ var BasicSkin = function() {
 	}
 
 	this.execute = function( handler, data ) {
-		console.log('skin::exceute');
-		txtProject.text(data[0].name);
-		tracking.html(data[0].commit.url);
+		console.log('skin::exceute', data);
+		txtProject.text(data.completition);
+		//tracking.html(data[0].commit.url);
 		container.append(txtProject);
-		container.append(tracking);
+		//container.append(tracking);
 	}
 
 }

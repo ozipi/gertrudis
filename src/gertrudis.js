@@ -56,7 +56,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	},
 	
 	_getPluginInstance: function(plugin, pluginOptions){
-		console.log('eee', plugin, pluginOptions);
+		console.log('gertrudis.eee', plugin, pluginOptions);
 		var pluginInstance = '';
 		switch(plugin){
 			case 'github':
@@ -80,7 +80,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	},
 	
 	_onSkinInit_successHandler: function(event){
-		console.log('_onSkinInit_successHandler::');		
+		console.log('gertrudis._onSkinInit_successHandler::');		
 		this._pluginExecute(this.options.pluginOptions);		
 	},
 	
@@ -101,7 +101,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 * Executes the plugin action
 	 **/	
 	_pluginExecute_successHandler: function(options){
-		console.log('_pluginExecute_successHandler::', options);				
+		console.log('gertrudis._pluginExecute_successHandler::', options);				
 		this._skinExecute(options);
 	},
 	
@@ -109,6 +109,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 * Executes the skin execute handler
 	 **/	
 	_skinExecute: function(options){
+		console.log('gertrudis._skinExecute::', options);
 		this.properties._skin.execute($.proxy(this._skinExecute_successHandler, this), options);
 	},	
 	
@@ -116,7 +117,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 * Executes the plugin action
 	 **/	
 	_skinExecute_successHandler: function(event, options){
-		console.log('_skinExecute_successHandler::', options);
+		console.log('gertrudis._skinExecute_successHandler::', options);
 		//TODO algo
 	},	
 	
