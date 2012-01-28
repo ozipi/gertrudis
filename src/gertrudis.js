@@ -7,8 +7,8 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 
 	// configuration of widget
 	options: {
-		skin: "",		
-		plugin: "github",
+		skin: "BasicSkin",		
+		plugin: "GithubPlugin",
 		pluginOptions: {},
 		enableTimeout: false
 	},
@@ -52,17 +52,11 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	},
 
 	_getSkinInstance: function(skin) {
-		return new BasicSkin();
+		return new window[this.options.skin]();
 	},
 	
 	_getPluginInstance: function(plugin, pluginOptions){
-		console.log('gertrudis.eee', plugin, pluginOptions);
-		var pluginInstance = '';
-		switch(plugin){
-			case 'github':
-				return new GithubPlugin(pluginOptions);
-				break;
-		}
+		return new window[plugin](pluginOptions);
 	},
 	
 	/**
