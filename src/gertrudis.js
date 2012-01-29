@@ -18,7 +18,6 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 		_plugin: {}		
 	},
 	
-
 	/**
 	 * Creation of widget
 	 **/
@@ -31,7 +30,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 		//this.skin().init($.proxy(this._onSkinInit_successHandler, this));
 		
 		console.log('gertrudis.create::');
-
+		
 		this.properties._skin = this._getSkinInstance(this.options.skin);
 		this.properties._skin.init(this);
 		
@@ -44,7 +43,7 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	 **/
 	_init: function() {
 		console.log('gertrudis.init::');				
-		this._pluginExecute(this.options.pluginOptions);		
+		this._pluginExecute(this.options.pluginOptions);
 		
 		if(this.options.enableTimeout){
 			this._setTimeout($.proxy(this._setTimeout, this));			
