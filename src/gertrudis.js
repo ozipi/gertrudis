@@ -51,10 +51,12 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	},
 
 	_getSkinInstance: function(skin) {
-		return new window[this.options.skin]();
+		if (window[skin] === undefined) throw "The skin '"+skin+"' doesn't exist";
+		return new window[skin]();
 	},
 	
 	_getPluginInstance: function(plugin, pluginOptions){
+		if (window[plugin] === undefined) throw "The plugin '"+plugin+"' doesn't exist";
 		return new window[plugin](pluginOptions);
 	},
 	
@@ -73,8 +75,8 @@ $.widget("ui.gertrudis", $.extend({}, WidgetHelper, {
 	},
 	
 	_onSkinInit_successHandler: function(event){
-		console.log('gertrudis._onSkinInit_successHandler::');		
-		this._pluginExecute(this.options.pluginOptions);		
+		//console.log('gertrudis._onSkinInit_successHandler::');		
+		//this._pluginExecute(this.options.pluginOptions);		
 	},
 	
 	/**
