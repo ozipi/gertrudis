@@ -1,0 +1,21 @@
+* { margin:0; padding:0; }
+body { background:#565656;}
+
+#wrapper { margin:0 auto; width:172px; margin-top:30px; }
+
+/*
+* Gertrudis
+*/
+#gertrudis { width:278px; height:150px; background:url('../images/gradient.png') #efefef; border:1px solid #c2c2c2;
+			font-family:arial, helvetica, "sans serif"; font-size:62.5%; padding:10px;
+			border-radius:10px; -moz-border-radius:10px; -ms-border-radius:10px; -webkit-border-radius:10px; }
+
+#gertrudis h1 { color:#686868; font-size:17px; }
+#gertrudis h2 { color:#8b8b8b; font-size:11px; }
+
+#gertrudis #trackbar { width:100%; height:25px; margin:20px 0 25px 0; position:relative; }
+#gertrudis #trackbar .start { width:3px; height:16px; background:#686868; position:absolute; top:4; left:0;}
+#gertrudis #trackbar .progress { width:220px; height:3px; background:#686868; position:absolute; top:11; left:3; }
+#gertrudis #trackbar .tracker { background:#ff8315; width:3px; height:25px; position:absolute; top:0; }
+#gertrudis #trackbar span { color:#fff; font-size:13px; position:absolute; right:20; top:4; font-weight:bold; }
+#gertrudis #trackbar img { position:absolute; right:0; top:0; }

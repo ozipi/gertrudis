@@ -6,7 +6,7 @@ function GithubPlugin (options){
 		this.githubInfo = {};			
 		this.githubInfo = new Github(this.options.user);
 		this.callback = null;
-		(this.options.baseToCompare == undefined)? this.options.baseToCompare = 100 : null;	
+		(this.options.baseToCompare == undefined)? this.options.baseToCompare = 100 : null;
 	};
 	
 	this.execute = function(options, handler){
