@@ -1,3 +1,5 @@
+// Github plugin 
+
 function GithubPlugin (options){
 	this.options = options;
 	
