@@ -1,4 +1,4 @@
-// Github plugin 
+// Github plugin test
 
 function GithubPlugin (options){
 	this.options = options;
